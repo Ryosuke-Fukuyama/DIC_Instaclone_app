@@ -13,9 +13,10 @@
       <nav>
         <ul class="top_menu clearfix">
           <% if logged_in? %>
-            <li><i>&nbsp;Insta</i></li>
-            <li><%= link_to "プロフィール", user_path(current_user.id) %></li>
-            <li><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></li>
+            <li class="top_left"><i>&nbsp;Insta</i></li>
+            <li class="top_left"><%= link_to "投稿一覧", pictures_path %></li>
+            <li class="top_right"><%= link_to "プロフィール", user_path(current_user.id) %></li>
+            <li class="top_right"><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></li>
           <% else %>
             <li><%= link_to "アカウント作成", new_user_path %></li>
             <li><%= link_to "ログイン", new_session_path %></li>

@@ -1,2 +1,25 @@
 <h1><%= @user.name %>のページ</h1>
-<p>メールアドレス： <%= @user.email %></p>
+<%= image_tag picture.image.url, size: '200x200' %>
+<%= form_with(model: @picture, local: true, url: choose_new_or_edit) do |form| %>
+  <% if @picture.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @picture.errors.count %>件のエラーがあります。</h2>
+      <ul>
+        <% @picture.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <% if picture.present? %>
+    <%= link_to "プロフィール画像を編集", edit_picture_path(picture.id) %>
+  <% else %>
+    <div class="picture_title">
+      <%= form.label :image %>
+      <%= image_tag(@picture.image.url) if @picture.image && @picture.image.url %>
+      <%= form.file_field :image %>
+      <%= form.hidden_field :image_cache %>
+    </div>
+    <%= form.submit %>
+  <% end %>
+<% end %>
