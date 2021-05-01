@@ -4,6 +4,4 @@
 <% else %>
 <%= image_tag 'no_image.png', size: '200x200' %>
 <% end %>
-<p><%= link_to '画像削除', user_path(@user.id),
-  method: :delete,data: { confirm: '削除しますか？' } %></p>
 <p><%= link_to 'プロフィール編集', edit_user_path(@user) %></p>
