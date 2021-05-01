@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :login_required, only: [:new, :create]
-  before_action :set_user, only: [:show, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def new
     @user = User.new
@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to user_path(@user.id)
+      redirect_to user_path(@user.id), notice:"ログインしました！"
     else
       render :new
     end
@@ -19,9 +19,20 @@ class UsersController < ApplicationController
   def show
   end
 
+  def edit
+  end
+
+  def update
+    if @user.update(user_params)
+      redirect_to users_path, notice: "プロフィールを編集しました！"
+    else
+      render :edit
+    end
+  end
+
   def destroy
     @user.destroy
-    redirect_to user_path, notice:"投稿を削除しました！"
+    redirect_to user_path, notice:"画像を削除しました！"
   end
 
   private

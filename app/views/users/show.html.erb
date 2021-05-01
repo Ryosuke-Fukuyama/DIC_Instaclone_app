@@ -2,27 +2,6 @@
 <% if @user.image.url != nil %>
   <%= image_tag @user.image.url, size: '200x200' %>
 <% end %>
-<%= form_with(model: @user, local: true) do |form| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= @user.errors.count %>件のエラーがあります。</h2>
-      <ul>
-        <% @user.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <% if @user.present? %>
-    <div class="user_title">
-      <%= form.label :image %>
-      <%= image_tag @user.image.url if @user.image && @user.image.url %>
-      <%= form.file_field :image %>
-      <%= form.hidden_field :image_cache %>
-    </div>
-    <%= form.submit "登録" %>
-  <% else %>
-    <%= link_to '画像変更', user_path(@user.id),
-        method: :delete,data: { confirm: '削除しますか？' } %>
-  <% end %>
-<% end %>
+<%= link_to '画像削除', user_path(@user.id),
+  method: :delete,data: { confirm: '削除しますか？' } %>
+<%= link_to 'プロフィール編集', edit_user_path(@user) %>
