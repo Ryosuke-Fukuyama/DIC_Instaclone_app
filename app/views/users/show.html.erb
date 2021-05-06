@@ -2,6 +2,8 @@
 <% if @user.image.url != nil %>
   <%= image_tag @user.image.url, size: '200x200' %>
 <% else %>
-<%= image_tag 'no_image.png', size: '200x200' %>
+  <%= image_tag 'no_image.png', size: '200x200' %>
 <% end %>
-<p><%= link_to 'プロフィール編集', edit_user_path(@user) %></p>
+<p><%= link_to 'プロフィール編集', edit_user_path(@user) %> |
+   <%= link_to 'お気に入り一覧', favorites_path(@user) %>
+</p>
